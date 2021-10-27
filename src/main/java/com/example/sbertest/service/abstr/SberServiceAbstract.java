@@ -8,6 +8,11 @@ import java.io.Serializable;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * Сервис по работе с репозиторием
+ * @param <T>  сущность
+ * @param <PK>  ID
+ */
 @Slf4j
 public abstract class SberServiceAbstract<T, PK extends Serializable> implements SberService<T, PK> {
     private final SberRepo<T, PK> sberRepo;
@@ -45,20 +50,23 @@ public abstract class SberServiceAbstract<T, PK extends Serializable> implements
     }
 
     @Override
+    @Transactional
     public List<T> getAll() {
         log.info("Class: {}, getAll()", getClass());
         return sberRepo.getAll();
     }
 
     @Override
+    @Transactional
     public boolean existById(PK id) {
         log.info("Class: {}, existById({})", getClass(), id);
         return sberRepo.existById(id);
     }
 
     @Override
+    @Transactional
     public Long countRows() {
-        log.info("Class: {}, Count rows in table", getClass());
+        log.info("Class: {}, countRows()", getClass());
         return sberRepo.countRows();
     }
 }

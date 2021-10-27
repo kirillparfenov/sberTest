@@ -12,6 +12,12 @@ import java.lang.reflect.Type;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * Репозиторий. Запросы к БД.
+ *
+ * @param <T> сущность
+ * @param <PK> ID
+ */
 public abstract class SberRepoAbstract<T, PK extends Serializable> implements SberRepo<T, PK> {
 
     @PersistenceContext
@@ -26,13 +32,11 @@ public abstract class SberRepoAbstract<T, PK extends Serializable> implements Sb
     }
 
     @Override
-    @Transactional
     public void create(T entity) {
         entityManager.persist(entity);
     }
 
     @Override
-    @Transactional
     public void update(T entity) {
         entityManager.merge(entity);
     }

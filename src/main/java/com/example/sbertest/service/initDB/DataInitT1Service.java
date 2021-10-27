@@ -10,8 +10,8 @@ import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 import java.util.ArrayList;
 
-/*
-DataInitT1Service - сервис, отвечающий за инициализацию таблицы T1
+/**
+ * DataInitT1Service - сервис, отвечающий за инициализацию таблицы T1 рандомными значениями
  */
 
 @Service

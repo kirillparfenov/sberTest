@@ -8,6 +8,10 @@ import org.springframework.stereotype.Component;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+/**
+ * Запуск потоков для выполнения Task.class
+ */
+
 @Component
 @AllArgsConstructor
 public class StartThreads {

@@ -5,6 +5,9 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 
+/**
+ * Заполнение БД тестовыми значениями
+ */
 @Service
 @AllArgsConstructor
 public class InitDB {
