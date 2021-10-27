@@ -1,0 +1,64 @@
+package com.example.sbertest.service.abstr;
+
+import com.example.sbertest.repo.abstr.SberRepo;
+import lombok.extern.slf4j.Slf4j;
+
+import javax.transaction.Transactional;
+import java.io.Serializable;
+import java.util.List;
+import java.util.Optional;
+
+@Slf4j
+public abstract class SberServiceAbstract<T, PK extends Serializable> implements SberService<T, PK> {
+    private final SberRepo<T, PK> sberRepo;
+
+    public SberServiceAbstract(SberRepo<T, PK> sberRepo) {
+        this.sberRepo = sberRepo;
+    }
+
+    @Override
+    @Transactional
+    public void create(T entity) {
+        log.info("Class: {}, create({})", getClass(), entity.getClass());
+        sberRepo.create(entity);
+    }
+
+    @Override
+    @Transactional
+    public void update(T entity) {
+        log.info("Class: {}, update({})", getClass(), entity.getClass());
+        sberRepo.update(entity);
+    }
+
+    @Override
+    @Transactional
+    public Optional<T> getById(PK id) {
+        log.info("Class: {}, getById({})", getClass(), id);
+        return sberRepo.getById(id);
+    }
+
+    @Override
+    @Transactional
+    public void deleteById(PK id) {
+        log.info("Class: {}, deleteById({})", getClass(), id);
+        sberRepo.deleteById(id);
+    }
+
+    @Override
+    public List<T> getAll() {
+        log.info("Class: {}, getAll()", getClass());
+        return sberRepo.getAll();
+    }
+
+    @Override
+    public boolean existById(PK id) {
+        log.info("Class: {}, existById({})", getClass(), id);
+        return sberRepo.existById(id);
+    }
+
+    @Override
+    public Long countRows() {
+        log.info("Class: {}, Count rows in table", getClass());
+        return sberRepo.countRows();
+    }
+}
